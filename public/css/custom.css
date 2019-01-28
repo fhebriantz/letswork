@@ -1,0 +1,50 @@
+.btn-pencil-list{
+  background-color: #449ed8;
+  color: white;
+  padding: 0px 5px !important;
+}
+
+.pencil-list {
+    height: 10px;
+    width: auto;
+}
+
+.btn-trash-list{
+  background-color: #449ed8;
+  color: white;
+  padding: 0px 6px !important;
+}
+
+.trash-list {
+    height: 10px;
+    width: auto;
+}
+
+.note-popover.popover {
+    max-width: none;
+    display: none !important;
+}
+
+.col-sm-6.test p {
+    margin: -7px 0px 11px 0px !important;
+}
+
+.card-box{
+  padding: 15px !important;
+}
+
+.widthmobile{
+    width: 200px;
+  }
+  .width50{
+    width: 100px;
+  }
+
+@media only screen and (max-width: 350px) {
+  .widthmobile{
+    width: 100%;
+  }
+  .width50{
+    width: 48%;
+  }
+}
