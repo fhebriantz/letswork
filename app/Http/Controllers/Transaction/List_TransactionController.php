@@ -8,7 +8,6 @@ use vendor\autoload;
 use App\Http\Model\Trans_Order;
 use App\Http\Model\Trans_Tagihan;
 use App\Http\Model\Trans_Penerimaan;
-use App\Http\Model\Trans_History;
 use App\Http\Model\Det_Order;
 use App\Http\Model\Mast_Dokter;
 use App\Http\Model\Mast_Medrep;
@@ -18,7 +17,7 @@ use DateTime;
 use Session;
 use App;
 
-class Trans_OrderController extends Controller
+class List_TransactionController extends Controller
 {
     public function __construct()
     {
@@ -28,17 +27,17 @@ class Trans_OrderController extends Controller
 
 // ============================================================================================================== ORDER START
     public function show(){ 
-        $order = Trans_Order::all_order()->where('status','=',1);
-        return view('pages/cms/tr_order/order', compact('order'));
+        $order = Trans_Order::all_order();
+        return view('pages/cms/list_transaksi/transaksi', compact('order'));
     }
 
-     // show input trans order s
+     // show input trans order
     public function input()
     {
         $id_trans_order = strtotime(date('D-m-y H:i:s'));
         $dokter = Mast_Dokter::all();
         $medrep = Mast_Medrep::all();
-        return  view('pages/cms/tr_order/order_input', compact('id_trans_order','dokter','medrep'));
+        return  view('pages/cms/list_transaksi/transaksi_input', compact('id_trans_order','dokter','medrep'));
     }
 
      // show edit trans order
@@ -49,7 +48,7 @@ class Trans_OrderController extends Controller
         $medrep = Mast_Medrep::all();
 
         $detail = Det_Order::all()->where('id_trans_order','=',$order->id_trans_order);
-        return  view('pages/cms/tr_order/order_view', compact('order','detail','dokter','medrep'));
+        return  view('pages/cms/list_transaksi/transaksi_view', compact('order','detail','dokter','medrep'));
     }
 
     // fungsi pas masukin trans order
@@ -82,13 +81,6 @@ class Trans_OrderController extends Controller
             $tagihan->created_by = session()->get('session_id');  
 
         $tagihan->save();
-
-        $history = new Trans_History;
-
-            $history->id_trans_order = $request->id_trans_order; 
-            $history->created_by = session()->get('session_id');  
-
-        $history->save();
 
         $penerimaan = new Trans_Penerimaan;
 
@@ -133,27 +125,20 @@ class Trans_OrderController extends Controller
 
 
 
-
-
-
-
-
-
-
 // ============================================================================================================== DETAIL START
     // tambahkan barang pas input
     public function detailinput($id)
     {
         $id_trans_order = $id;
         $detail = Det_Order::all()->where('id_trans_order','=',$id_trans_order);
-        return  view('pages/cms/tr_order/detail_input', compact('id_trans_order','detail'));
+        return  view('pages/cms/list_transaksi/detail_input', compact('id_trans_order','detail'));
     }
 
     // detail barang edit
     public function detailedit($id)
     {
         $detail = Det_Order::all()->where('id','=',$id)->first();
-        return  view('pages/cms/tr_order/detail_edit', compact('detail'));
+        return  view('pages/cms/list_transaksi/detail_edit', compact('detail'));
     }
 
     // fungsi masukin data detail
@@ -175,7 +160,6 @@ class Trans_OrderController extends Controller
             $order->kemasan = $request->kemasan; 
             $order->ukuran = $request->ukuran; 
             $order->harga = $request->harga; 
-            $order->total_harga = ($request->qty) * ($request->harga); 
             $order->created_by = session()->get('session_id');  
 
         $order->save();
@@ -211,215 +195,6 @@ class Trans_OrderController extends Controller
     }
 
 // ============================================================================================================== Detail END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ============================================================================================================== SO START
-    public function show_so(){ 
-        $order = Trans_Order::all_order()->where('status','=',1);
-        return view('pages/cms/tr_so/so', compact('order'));
-    }
-
-    // show edit trans order
-    public function edit_so($id)
-    {
-        $order = Trans_Order::all_order()->where('id','=',$id)->first();
-        $dokter = Mast_Dokter::all();
-        $medrep = Mast_Medrep::all();
-
-        $detail = Det_Order::all()->where('id_trans_order','=',$order->id_trans_order);
-        return  view('pages/cms/tr_so/so_edit', compact('order','detail','dokter','medrep'));
-    }
-
-    // fungsi pas update trans order
-    function update_so (Request $request, $id)  
-    {
-        $validatedData = $request->validate([
-
-                'id_so' => 'required',
-                'no_so' => 'required',
-                'tgl_so' => 'required',
-
-            ]);
-
-        $order = Trans_Order::where('id','=',$id)->first();
-
-            $order->id_so = $request->id_so; 
-            $order->no_so = $request->no_so; 
-            $order->tgl_so = $request->tgl_so;
-            $order->status = 2;
-
-            $order->modified_by = session()->get('session_id');  
-
-        $order->save();
-
-        return  redirect('/so')->with('message','Transaksi pindah ke tagihan!');
-    }
-// ============================================================================================================== SO END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ============================================================================================================== Penerimaan START
-    public function show_tagihan(){ 
-        $order = Trans_Order::all_order()->where('status','=',2);
-        return view('pages/cms/tr_tagihan/tagihan', compact('order'));
-    }
-
-    // show edit trans order
-    public function edit_tagihan($id)
-    {
-        $order = Trans_Order::all_order()->where('id','=',$id)->first();
-        $dokter = Mast_Dokter::all();
-        $medrep = Mast_Medrep::all();
-
-        $detail = Det_Order::all()->where('id_trans_order','=',$order->id_trans_order);
-        return  view('pages/cms/tr_tagihan/tagihan_edit', compact('order','detail','dokter','medrep'));
-    }
-
-     // fungsi pas update trans order
-    function update_tagihan (Request $request, $id)  
-    {
-        $validatedData = $request->validate([
-
-                'tgl_tagihan' => 'required',
-                'id_faktur' => 'required',
-                'tgl_faktur' => 'required',
-                'is_lunas' => 'required',
-
-
-            ]);
-
-
-            $order = Trans_Order::where('id','=',$id)->first();
-
-        if ($request->is_lunas == 1) {
-
-                $order->modified_by = session()->get('session_id');  
-
-            $order->save();
-        }
-
-       
-
-
-        $tagihan = Trans_Tagihan::where('id_trans_order','=',$order->id_trans_order)->first();
-
-            $tagihan->tgl_tagihan = $request->tgl_tagihan; 
-            $tagihan->id_faktur = $request->id_faktur; 
-            $tagihan->tgl_faktur = $request->tgl_faktur; 
-            $tagihan->is_lunas = $request->is_lunas; 
-            $tagihan->modified_by = session()->get('session_id');  
-
-        $tagihan->save();
-
-        if ($request->is_lunas == 1) {
-
-               return  redirect('/tagihan')->with('message','Transaksi Lunas pindah ke penerimaan!');
-        }else{
-               return redirect('/tagihan')->with('message','Transaksi diperbaharui!');
-        }
-
-        
-    }
-// ============================================================================================================== Penerimaan END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ============================================================================================================== Penerimaan START
-    public function show_penerimaan(){ 
-        $order = Trans_Order::all_order()->where('status','=',3);
-        return view('pages/cms/tr_penerimaan/penerimaan', compact('order'));
-    }
-
-    // show edit trans order
-    public function edit_penerimaan($id)
-    {
-        $order = Trans_Order::all_order()->where('id','=',$id)->first();
-        $dokter = Mast_Dokter::all();
-        $medrep = Mast_Medrep::all();
-
-        $detail = Det_Order::all()->where('id_trans_order','=',$order->id_trans_order);
-        return  view('pages/cms/tr_penerimaan/penerimaan_edit', compact('order','detail','dokter','medrep'));
-    }
-
-    function update_penerimaan (Request $request, $id)  
-    {
-        $validatedData = $request->validate([
-
-                'nama_penerima' => 'required',
-                'tgl_terima' => 'required',
-
-            ]);
-
-        $order = Trans_Order::where('id','=',$id)->first();
-
-            $order->status = 3;
-
-            $order->modified_by = session()->get('session_id');  
-
-        $order->save();
-        
-        $penerimaan = Trans_Penerimaan::where('id_trans_order','=',$order->id_trans_order)->first();
-
-            $penerimaan->nama_penerima = $request->nama_penerima; 
-            $penerimaan->tgl_terima = $request->tgl_terima; 
-            $penerimaan->modified_by = session()->get('session_id');  
-
-        $penerimaan->save();
-
-
-        return  redirect('/penerimaan')->with('message','Transaksi selesai!');
-    }
-// ============================================================================================================== Penerimaan END
-
-   
-
-
-
 
 
 

@@ -91,6 +91,11 @@
                                 </ul>
                             </li>
 
+                            <li class="has_sub">
+                                <a href="{{ url('/transaksi')}}" class="waves-effect"><i class="zmdi zmdi-format-list-bulleted"></i> <span> List Transaction </span></a>
+                                
+                            </li>
+
                         </ul>
                         <div class="clearfix"></div>
                     </div>

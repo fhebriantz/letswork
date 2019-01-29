@@ -65,7 +65,9 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>ID Trans</th>
+                                                            <th>kemasan</th>
+                                                            <th>qty</th>
+                                                            <th>harga</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -77,6 +79,8 @@
                                                         <tr>
                                                             <td>{{$no++}}</td>
                                                             <td>{{$detail->kemasan}}</td>
+                                                            <td>{{$detail->qty}}</td>
+                                                            <td>{{$detail->harga}}</td>
                                                             <td>
                                                                 <form method="POST" style="display: inline-block;" action="{{url('/detail/'.$detail->id.'/delete')}}">
                                                                 {{ csrf_field() }}

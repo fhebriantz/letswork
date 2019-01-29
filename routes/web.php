@@ -44,6 +44,23 @@ Route::put('/detail/{id}/edit','Transaction\Trans_OrderController@detailupdate')
 Route::delete('/order/{id}/delete','Transaction\Trans_OrderController@delete');
 
 
+
+// transaksi
+Route::get('/transaksi', 'Transaction\List_TransactionController@show');
+Route::get('/transaksi/input', 'Transaction\List_TransactionController@input');
+Route::get('/transaksi/{id}/view', 'Transaction\List_TransactionController@view');
+Route::get('/detailtransaksi/{id}/edit', 'Transaction\List_TransactionController@detailedit');
+Route::get('/detailtransaksi/{id}/input', 'Transaction\List_TransactionController@detailinput');
+// crud order
+Route::post('/transaksi/input','Transaction\List_TransactionController@insert'); 
+Route::put('/transaksi/{id}/edit','Transaction\List_TransactionController@update'); 
+Route::delete('/transaksi/{id}/delete','Transaction\List_TransactionController@delete');
+Route::post('/detailtransaksi/{id}/input','Transaction\List_TransactionController@detailinsert');
+Route::put('/detailtransaksi/{id}/edit','Transaction\List_TransactionController@detailupdate'); 
+Route::post('/detailtransaksi/{id}/active','Transaction\List_TransactionController@active');
+Route::delete('/detailtransaksi/{id}/delete','Transaction\List_TransactionController@detaildelete'); 
+
+
 // ubah SO 
 Route::get('/so', 'Transaction\Trans_OrderController@show_so');
 Route::get('/so/{id}/edit', 'Transaction\Trans_OrderController@edit_so');
