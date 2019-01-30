@@ -60,13 +60,24 @@
 
                                         <div class="col-sm-12 col-xs-12 col-md-12">
                                             <div class="">
+                                                
+                                                <div class="form-group">
+
+                                                    <label for="id_dokter">ID Trans Order</label>
+                                                    <input name=""  autocomplete="off"  readonly=""   type="text" value="{{$order->id_trans_order}}" class="form-control" >
+                                                </div>
                                                 <label for="">Detail Order Transaksi<span class="text-danger">*</span></label>
 
                                                 <table  id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
+                                                            <th>Nama Barang</th>
                                                             <th>Kemasan</th>
+                                                            <th>Ukuran</th>
+                                                            <th>Qty</th>
+                                                            <th>Harga</th>
+                                                            <th>Jumlah</th>
                                                         </tr>
                                                     </thead>
 
@@ -76,12 +87,22 @@
                                                         @foreach($detail as $detail)
                                                         <tr>
                                                             <td>{{$no++}}</td>
+                                                            <td>{{$detail->nama_barang}}</td>
                                                             <td>{{$detail->kemasan}}</td>
+                                                            <td>{{$detail->ukuran}}</td>
+                                                            <td>{{$detail->qty}}</td>
+                                                            <td>{{$detail->harga}}</td>
+                                                            <td>{{$detail->total_harga}}</td>
                                                         </tr>
                                                         @endforeach
 
                                                     </tbody>
                                                 </table>
+
+                                                <div class="form-group">
+                                                    <label for="total_bayar">Total Harga<span class="text-danger">*</span></label>
+                                                    <input name="total_bayar" value="{{$sum}}"  autocomplete="off"     type="text" placeholder="0" readonly="" class="form-control" id="total_bayar">
+                                                </div>
                                             </div>
                                         </div>
 
@@ -99,13 +120,6 @@
                                             <div class="">
                                                 <form method="POST" action="{{url('/so/'.$order->id.'/edit')}}" data-parsley-validate novalidate>
                                                 {{ csrf_field() }}
-                                                <div class="form-group">
-                                                    <label>ID Trans Order</label>
-                                                    <div>
-                                                            <input type="text" autocomplete="off" readonly="" class="form-control" name="" placeholder="yyyy-mm-dd" value="{{$order->id_trans_order}}" id="">
-                                                       
-                                                    </div>
-                                                </div>
                                                 <div class="form-group">
                                                     <label>Dokter</label>
                                                     <div>
@@ -130,12 +144,6 @@
                                                     </div>
                                                 </div>
                                                 
-
-                                                <div class="form-group">
-                                                    <label for="id_so">ID SO<span class="text-danger">*</span></label>
-                                                    <input name="id_so"  autocomplete="off" required  value="{{$order->id_so}}"  type="number" placeholder="Masukan ID SO" name" class="form-control" id="id_so">
-                                                </div>
-
 
                                                 <div class="form-group">
                                                     <label for="no_so">No SO<span class="text-danger">*</span></label>

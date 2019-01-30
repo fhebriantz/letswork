@@ -49,7 +49,7 @@
                                                     </ul>
                                                   </div>
                                                 @endif
-                                                <form method="POST" action="{{url('/brosur/'.$brosur->id.'/edit')}}" data-parsley-validate novalidate>
+                                                <form method="POST" action="{{url('/brosur/'.$brosur->id.'/edit')}}"  enctype="multipart/form-data" data-parsley-validate novalidate>
                                                 {{ csrf_field() }}
 
                                     <div class="row">
@@ -73,7 +73,11 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="lampiran">Lampiran<span class="text-danger">*</span></label>
-                                                    <input name="lampiran" autocomplete="off" required  value="{{$brosur->lampiran}}"  type="text" placeholder="Masukan Lampiran" name" class="form-control" id="lampiran">
+                                                    <br>
+                                                    <a target="_blank" href="{{url('/public/brosur/'.$brosur->lampiran)}}">{{ $brosur->lampiran }}</a>
+
+                                                    <input type="file" id="inputpdf" name="lampiran"  style="width: 100%" placeholder="pdf" >
+                                                    
                                                 </div>
                                                 
                                             </div>

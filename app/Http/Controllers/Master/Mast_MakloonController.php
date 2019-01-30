@@ -43,6 +43,7 @@ class Mast_MakloonController extends Controller
                 'merk' => 'required',
                 'tahun_makloon' => 'required',
                 'nama_produk' => 'required',
+                'riwayat_pengambilan' => 'required',
                 'stok' => 'required',
             ]);
 
@@ -53,6 +54,7 @@ class Mast_MakloonController extends Controller
             $makloon->tahun_makloon = $request->tahun_makloon; 
             $makloon->nama_produk = $request->nama_produk; 
             $makloon->stok = $request->stok; 
+            $makloon->riwayat_pengambilan = $request->riwayat_pengambilan; 
             $makloon->created_by = session()->get('session_id');  
 
         $makloon->save();
@@ -68,6 +70,7 @@ class Mast_MakloonController extends Controller
                 'merk' => 'required',
                 'tahun_makloon' => 'required',
                 'nama_produk' => 'required',
+                'riwayat_pengambilan' => 'required',
                 'stok' => 'required',
 
             ]);
@@ -79,6 +82,7 @@ class Mast_MakloonController extends Controller
             $makloon->tahun_makloon = $request->tahun_makloon; 
             $makloon->nama_produk = $request->nama_produk; 
             $makloon->stok = $request->stok; 
+            $makloon->riwayat_pengambilan = $request->riwayat_pengambilan; 
             $makloon->modified_by = session()->get('session_id');  
 
         $makloon->save();

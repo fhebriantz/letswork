@@ -84,6 +84,11 @@
                                                     <label>Pengajuan Omset (Rp)</label>
                                                     <input name="pengajuan_omset" type="number" value="{{$sponsor->pengajuan_omset}}" placeholder="Masukan Omset" autocomplete="off" data-parsley-type="number" class="form-control">
                                                 </div>
+                                                
+                                                <div class="form-group">
+                                                    <label>Omset yang Diajukan</label>
+                                                    <textarea name="omset_yang_diajukan"  class="form-control" name="" id="" cols="30" rows="5">{{$sponsor->omset_yang_diajukan}}</textarea>
+                                                </div>
                                                 <div class="form-group">
                                                     <label>Diskon (%)</label>
                                                     <input  type="number"  name="diskon" min="0" max="100" value="{{$sponsor->diskon}}" placeholder="Masukan Diskon" autocomplete="off" class="form-control">

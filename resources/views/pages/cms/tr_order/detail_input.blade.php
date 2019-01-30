@@ -65,9 +65,12 @@
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
-                                                            <th>kemasan</th>
-                                                            <th>qty</th>
-                                                            <th>harga</th>
+                                                            <th>Nama Barang</th>
+                                                            <th>Kemasan</th>
+                                                            <th>Ukuran</th>
+                                                            <th>Qty</th>
+                                                            <th>Harga</th>
+                                                            <th>Jumlah</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -78,9 +81,12 @@
                                                         @foreach($detail as $detail)
                                                         <tr>
                                                             <td>{{$no++}}</td>
+                                                            <td>{{$detail->nama_barang}}</td>
                                                             <td>{{$detail->kemasan}}</td>
+                                                            <td>{{$detail->ukuran}}</td>
                                                             <td>{{$detail->qty}}</td>
                                                             <td>{{$detail->harga}}</td>
+                                                            <td>{{$detail->total_harga}}</td>
                                                             <td>
                                                                 <form method="POST" style="display: inline-block;" action="{{url('/detail/'.$detail->id.'/delete')}}">
                                                                 {{ csrf_field() }}
@@ -93,10 +99,18 @@
 
                                                     </tbody>
                                                 </table>
+                                                <div class="form-group">
+                                                    <label for="total_bayar">Total Harga<span class="text-danger">*</span></label>
+                                                    <input name="total_bayar" value="{{$sum}}"  autocomplete="off"     type="text" placeholder="0" readonly="" class="form-control" id="total_bayar">
+                                                </div>
                                                 <p style="padding-top: 10px; color: #00b987"><strong>{{session()->get('message')}}</strong></p>
                                                 
                                                 <form method="POST" action="{{url('/detail/'.$id_trans_order.'/input')}}" data-parsley-validate novalidate>
                                                 {{ csrf_field() }}
+                                                <div class="form-group">
+                                                    <label for="nama_barang">Nama Barang<span class="text-danger">*</span></label>
+                                                    <input name="nama_barang"  autocomplete="off"     type="text" placeholder="Masukan Nama Barang" name" class="form-control" id="nama_barang">
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="kemasan">Kemasan<span class="text-danger">*</span></label>
                                                     <input name="kemasan"  autocomplete="off"     type="text" placeholder="Masukan Kemasan" name" class="form-control" id="kemasan">
@@ -113,6 +127,8 @@
                                                     <label for="harga">Harga<span class="text-danger">*</span></label>
                                                     <input name="harga"  autocomplete="off"     type="number" placeholder="Masukan Stok" name" class="form-control" id="harga">
                                                 </div>
+
+
 
                                                 <div class="form-group text-right m-b-0">
                                                     <button class="btn btn-primary waves-light" style="width: 100%" type="submit">
@@ -136,6 +152,9 @@
                                 <form method="POST" action="{{url('/detail/'.$id_trans_order.'/active')}}" data-parsley-validate novalidate>
                                                 {{ csrf_field() }}
                                     <div class="form-group text-right m-b-0">
+
+                                        <input name="total_bayar" hidden="" value="{{$sum}}"  autocomplete="off"     type="text" placeholder="0" readonly="" class="form-control" id="total_bayar">
+
                                         <button class="btn btn-primary waves-light" type="submit">
                                             Simpan & Selesai
                                         </button>

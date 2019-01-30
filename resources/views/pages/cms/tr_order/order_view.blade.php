@@ -60,14 +60,24 @@
 
                                         <div class="col-sm-12 col-xs-12 col-md-12">
                                             <div class="">
+                                                
+                                                <div class="form-group">
+
+                                                    <label for="id_dokter">ID Trans Order</label>
+                                                    <input name=""  autocomplete="off"  readonly=""   type="text" value="{{$order->id_trans_order}}" class="form-control" >
+                                                </div>
                                                 <label for="">Detail Order Transaksi<span class="text-danger">*</span></label>
 
                                                 <table  id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
+                                                            <th>Nama Barang</th>
                                                             <th>Kemasan</th>
-                                                            <th>Action</th>
+                                                            <th>Ukuran</th>
+                                                            <th>Qty</th>
+                                                            <th>Harga</th>
+                                                            <th>Jumlah</th>
                                                         </tr>
                                                     </thead>
 
@@ -77,45 +87,22 @@
                                                         @foreach($detail as $detail)
                                                         <tr>
                                                             <td>{{$no++}}</td>
+                                                            <td>{{$detail->nama_barang}}</td>
                                                             <td>{{$detail->kemasan}}</td>
-                                                            <td>
-                                                                <a class="btn btn-action marginright btn-pencil-list" href="{{url('detail/'.$detail->id.'/edit')}}"><img class="pencil-list" src="{{ asset('images/icon/pencil.png')}}" alt="" ></a>
-                                                                <form method="POST" style="display: inline-block;" action="{{url('/detail/'.$detail->id.'/delete')}}">
-                                                                {{ csrf_field() }}
-                                                                <button class="btn btn-action marginright btn-trash-list" type="submit" name="delete" onclick="return confirm('Are you sure want to delete {{$detail->id}}?');"><img class="trash-list" src="{{ asset('images/icon/trash.png')}}" alt=""></button> 
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                                </form>
-                                                            </td>
+                                                            <td>{{$detail->ukuran}}</td>
+                                                            <td>{{$detail->qty}}</td>
+                                                            <td>{{$detail->harga}}</td>
+                                                            <td>{{$detail->total_harga}}</td>
                                                         </tr>
                                                         @endforeach
 
                                                     </tbody>
                                                 </table>
-                                                <p style="padding-top: 10px; color: #00b987"><strong>{{session()->get('message')}}</strong></p>
-                                                <form method="POST" action="{{url('detail/'.$order->id_trans_order.'/input')}}" data-parsley-validate novalidate>
-                                                {{ csrf_field() }}
+
                                                 <div class="form-group">
-                                                    <label for="kemasan">Kemasan<span class="text-danger">*</span></label>
-                                                    <input name="kemasan"  autocomplete="off"     type="text" placeholder="Masukan Kemasan" name" class="form-control" id="kemasan">
+                                                    <label for="total_bayar">Total Harga<span class="text-danger">*</span></label>
+                                                    <input name="total_bayar" value="{{$sum}}"  autocomplete="off"     type="text" placeholder="0" readonly="" class="form-control" id="total_bayar">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="qty">Jumlah<span class="text-danger">*</span></label>
-                                                    <input name="qty"  autocomplete="off"     type="number" max="99999" placeholder="Masukan Jumlah" name" class="form-control" id="qty">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="ukuran">Ukuran<span class="text-danger">*</span></label>
-                                                    <input name="ukuran"  autocomplete="off"  type="text" placeholder="Masukan Ukuran" name" class="form-control" id="ukuran">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="harga">Harga<span class="text-danger">*</span></label>
-                                                    <input name="harga"  autocomplete="off"     type="number" placeholder="Masukan Stok" name" class="form-control" id="harga">
-                                                </div>
-                                                <div class="form-group text-right m-b-0">
-                                                    <button class="btn btn-primary waves-light widthmobile"  type="submit" onclick="return confirm('Are you sure?');">
-                                                        Tambah Barang
-                                                    </button>
-                                                </div>
-                                                </form>
                                             </div>
                                         </div>
 
@@ -132,54 +119,40 @@
 
 
                                             <div class="">
-                                                <form method="POST" action="{{url('/order/'.$order->id.'/edit')}}" data-parsley-validate novalidate>
-                                                {{ csrf_field() }}
-
-                                                <div class="form-group">
-
-                                                    <label for="id_dokter">ID Trans Order</label>
-                                                    <input name=""  autocomplete="off"  readonly=""   type="text" value="{{$order->id_trans_order}}" class="form-control" >
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="id_dokter">Dokter</label>
-                                                    <select name="id_dokter" class="form-control">
-                                                        <option value="">Pilih Dokter</option>
-                                                        @foreach($dokter as $dok)
-                                                        <option value="{{$dok->id}}"
-                                                            <?php if ($order->id_dokter == $dok->id): ?>
-                                                            <?php echo "selected" ?>
-                                                            <?php endif ?>>{{$dok->nama_dokter}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
 
 
                                                 <div class="form-group">
-                                                    <label for="id_medrep">Medrep</label>
-                                                    <select name="id_medrep" class="form-control">
-                                                        <option value="">Pilih Medrep</option>
-                                                        @foreach($medrep as $med)
-                                                        <option value="{{$med->id}}"
-                                                            <?php if ($order->id_medrep == $med->id): ?>
-                                                            <?php echo "selected" ?>
-                                                            <?php endif ?>>{{$med->nama_medrep}}</option>
-                                                        @endforeach
-                                                    </select>
+
+                                                    <label for="">Nama Dokter</label>
+                                                    <input name=""  autocomplete="off"  readonly=""   type="text" value="{{$order->nama_dokter}}" class="form-control" >
                                                 </div>
+
+                                                <div class="form-group">
+
+                                                    <label for="">Nama Medrep</label>
+                                                    <input name=""  autocomplete="off"  readonly=""   type="text" value="{{$order->nama_medrep}}" class="form-control" >
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label>Tanggal Transaksi</label>
+                                                    <div>
+                                                        <div class="input-group">
+                                                            <input type="text" readonly="" autocomplete="off" class="form-control" name="tgl_trans_order" value="{{$order->tgl_trans_order}}">
+                                                            <span class="input-group-addon bg-custom b-0"><i class="icon-calender"></i></span>
+                                                        </div><!-- input-group -->
+                                                    </div>
+                                                </div>
+
 
                                            
                                                 
                                                 <div class="form-group text-right m-b-0">
-                                                    <button class="btn btn-primary width50 waves-light"  onclick="return confirm('Are you sure want to submit?');" type="submit">
-                                                        Simpan
-                                                    </button>
-                                                    <a href="{{url('/order')}}" class="width50 btn btn-secondary m-l-5">
-                                                        Batal
+                                                    <a href="{{url('/order')}}" class="width50 btn btn-secondary ">
+                                                        Kembali
                                                     </a>
                                                 </div>
-                                            <input type="hidden" name="_method" value="PUT">
-                                            </form>
                                                 
                                             </div>
 

@@ -49,7 +49,7 @@
                                                     </ul>
                                                   </div>
                                                 @endif
-                                                <form method="POST" action="{{url('/brosur/input')}}" data-parsley-validate novalidate>
+                                                <form method="POST" action="{{url('/brosur/input')}}"  enctype="multipart/form-data" data-parsley-validate novalidate>
                                                 {{ csrf_field() }}
 
                                     <div class="row">
@@ -72,8 +72,8 @@
                                                     <textarea name="deskripsi" class="form-control" autocomplete="off" id="" cols="30" rows="5" placeholder="Masukan Deskripsi" id="deskripsi"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="lampiran">Lampiran<span class="text-danger">*</span></label>
-                                                    <input name="lampiran" autocomplete="off" required   type="text" placeholder="Masukan Lampiran" name" class="form-control" id="lampiran">
+                                                    <label for="lampiran">Lampiran Brosur<span class="text-danger">*</span></label>
+                                                    <input type="file" id="inputpdf" name="lampiran"  style="width: 100%" placeholder="pdf" >
                                                 </div>
                                                 
                                             </div>

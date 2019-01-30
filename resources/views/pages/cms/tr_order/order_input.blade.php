@@ -80,16 +80,6 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>Tanggal Transaksi</label>
-                                                    <div>
-                                                        <div class="input-group">
-                                                            <input type="text" autocomplete="off" class="form-control" name="tgl_trans_order" placeholder="yyyy-mm-dd"  id="tgl_trans_order">
-                                                            <span class="input-group-addon bg-custom b-0"><i class="icon-calender"></i></span>
-                                                        </div><!-- input-group -->
-                                                    </div>
-                                                </div>
 
                   
                                             </div>

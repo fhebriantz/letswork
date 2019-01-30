@@ -60,13 +60,26 @@
 
                                         <div class="col-sm-12 col-xs-12 col-md-12">
                                             <div class="">
+                                                <div class="form-group">
+                                                    <label>ID Trans Order</label>
+                                                    <div>
+                                                            <input type="text" autocomplete="off" readonly="" class="form-control" name="" placeholder="yyyy-mm-dd" value="{{$order->id_trans_order}}" id="">
+                                                       
+                                                    </div>
+                                                </div>
                                                 <label for="">Detail Order Transaksi<span class="text-danger">*</span></label>
+
 
                                                 <table  id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
+                                                            <th>Nama Barang</th>
                                                             <th>Kemasan</th>
+                                                            <th>Ukuran</th>
+                                                            <th>Qty</th>
+                                                            <th>Harga</th>
+                                                            <th>Jumlah</th>
                                                         </tr>
                                                     </thead>
 
@@ -76,12 +89,22 @@
                                                         @foreach($detail as $detail)
                                                         <tr>
                                                             <td>{{$no++}}</td>
+                                                            <td>{{$detail->nama_barang}}</td>
                                                             <td>{{$detail->kemasan}}</td>
+                                                            <td>{{$detail->ukuran}}</td>
+                                                            <td>{{$detail->qty}}</td>
+                                                            <td>{{$detail->harga}}</td>
+                                                            <td>{{$detail->total_harga}}</td>
                                                         </tr>
                                                         @endforeach
 
                                                     </tbody>
                                                 </table>
+
+                                                <div class="form-group">
+                                                    <label for="total_bayar">Total Harga<span class="text-danger">*</span></label>
+                                                    <input name="total_bayar" value="{{$sum}}"  autocomplete="off"     type="text" placeholder="0" readonly="" class="form-control" id="total_bayar">
+                                                </div>
                                             </div>
                                         </div>
 
@@ -98,8 +121,7 @@
                                             
 
                                             <div class="">
-                                                <form method="POST" action="{{url('/penerimaan/'.$order->id.'/edit')}}" data-parsley-validate novalidate>
-                                                {{ csrf_field() }}
+                                                   <p style="padding-top: 10px; color: #00b987"><strong>{{session()->get('message')}}</strong></p>
                                                 <div class="form-group">
                                                     <label>ID Trans Order</label>
                                                     <div>
@@ -132,11 +154,6 @@
                                                 </div>
                                                 
 
-                                                <div class="form-group">
-                                                    <label for="">ID SO<span class="text-danger">*</span></label>
-                                                    <input name="" readonly="" autocomplete="off"   value="{{$order->id_so}}"  type="number" placeholder="Masukan ID SO" name" class="form-control" id="">
-                                                </div>
-
 
                                                 <div class="form-group">
                                                     <label for="">No SO<span class="text-danger">*</span></label>
@@ -153,51 +170,23 @@
                                                     </div>
                                                 </div>
 
-
-
                                                 <div class="form-group">
-                                                    <label>Tanggal Tagihan</label>
-                                                    <div>
-                                                        <div class="input-group">
-                                                            <input type="text" autocomplete="off" ="" class="form-control" name="" placeholder="yyyy-mm-dd" value="{{$order->tgl_tagihan}}" readonly="" id="">
-                                                            <span class="input-group-addon bg-custom b-0"><i class="icon-calender"></i></span>
-                                                        </div><!-- input-group -->
-                                                    </div>
+                                                    <label for="">No Faktur<span class="text-danger">*</span></label>
+                                                    <input name="" readonly=""  autocomplete="off" required  value="{{$order->id_faktur}}"  type="number" placeholder="Masukan No Faktur" name" class="form-control" id="">
                                                 </div>
-
+                                                
                                                 <div class="form-group">
                                                     <label>Tanggal Faktur</label>
                                                     <div>
                                                         <div class="input-group">
-                                                            <input type="text" autocomplete="off" ="" class="form-control" name="" placeholder="yyyy-mm-dd" value="{{$order->tgl_faktur}}" readonly="" id="">
+                                                            <input type="text" autocomplete="off" readonly="" class="form-control" name="tgl_faktur" placeholder="yyyy-mm-dd" value="{{$order->tgl_faktur}}" id="">
                                                             <span class="input-group-addon bg-custom b-0"><i class="icon-calender"></i></span>
                                                         </div><!-- input-group -->
                                                     </div>
                                                 </div>
-
-                                                <div class="form-group">
-                                                    <label for="id_faktur">ID Faktur<span class="text-danger">*</span></label>
-                                                    <input name=""  autocomplete="off" required  value="{{$order->id_faktur}}"  type="number" readonly="" placeholder="Masukan ID SO" name" class="form-control" id="">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="">Lunas/Belum Lunas<span class="text-danger">*</span></label>
-                                                    <select readonly name="" class="form-control">
-                                                        <option value="">Pilih Kategori</option>
-                                                        <option value="1"
-                                                            <?php if ($order->is_lunas == 1): ?>
-                                                            <?php echo "selected" ?>
-                                                            <?php endif ?>
-                                                            ><strong style="color: green">LUNAS</strong>
-                                                        </option>
-                                                        <option value="0"
-                                                            <?php if ($order->is_lunas == 0): ?>
-                                                            <?php echo "selected" ?>
-                                                            <?php endif ?>
-                                                            ><strong style="color: red">BELUM LUNAS</strong>
-                                                        </option>
-                                                    </select>
-                                                </div>
+                                                
+                                                <form method="POST" action="{{url('/penerimaan/'.$order->id.'/edit')}}" data-parsley-validate novalidate>
+                                                {{ csrf_field() }}
 
 
                                                 <div class="form-group">

@@ -49,6 +49,9 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>ID Trans</th>
+                                                <th>Dokter</th>
+                                                <th>Medrep</th>
+                                                <th>Tanggal</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -60,8 +63,12 @@
                                             <tr>
                                                 <td>{{$no++}}</td>
                                                 <td><a href="{{url('order/'.$order->id.'/view')}}">{{$order->id_trans_order}}</a></td>
+                                                <td>{{$order->nama_dokter}}</td>
+                                                <td>{{$order->nama_medrep}}</td>
+                                                <td>{{$order->tgl_trans_order}}</td>
                                                 <td>
-                                                    <a class="btn btn-action marginright btn-pencil-list" href="{{url('order/'.$order->id.'/view')}}"><img class="pencil-list" src="{{ asset('images/icon/pencil.png')}}" alt="" ></a>
+                                                    
+                                                    <a class="btn btn-action marginright btn-pencil-list" href="{{url('so/'.$order->id.'/edit')}}">Ubah SO</a>
                                                     <form method="POST" style="display: inline-block;" action="{{url('/order/'.$order->id.'/delete')}}">
                                                     {{ csrf_field() }}
                                                     <button class="btn btn-action marginright btn-trash-list" type="submit" name="delete" onclick="return confirm('Are you sure want to delete {{$order->id_trans_order}}?');"><img class="trash-list" src="{{ asset('images/icon/trash.png')}}" alt=""></button> 

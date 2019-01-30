@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use vendor\autoload;
+use Illuminate\Support\Facades\Input;
 use App\Http\Model\Mast_Brosur;
 use Illuminate\Support\Facades\Redirect;
 use Date;
@@ -48,7 +49,22 @@ class Mast_BrosurController extends Controller
 
             $brosur->tgl_brosur_upload = $request->tgl_brosur_upload; 
             $brosur->deskripsi = $request->deskripsi; 
-            $brosur->lampiran = $request->lampiran; 
+            if($request->file('lampiran') == "" || $request->file('lampiran') == null)
+            {
+                $brosur->lampiran = $brosur->lampiran;
+            } 
+             else
+            {
+                $this->validate($request, [
+                    'lampiran' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:10000',
+                ]);
+
+                $files      = $request->file('lampiran');
+                $fileNames   = 'brosur'.time().'.'.$files->getClientOriginalExtension();
+                $destinationPath = public_path('/brosur');
+                $files->move($destinationPath, $fileNames);
+                $brosur->lampiran = $fileNames;
+            }
             $brosur->created_by = session()->get('session_id');  
 
         $brosur->save();
@@ -70,7 +86,22 @@ class Mast_BrosurController extends Controller
 
             $brosur->tgl_brosur_upload = $request->tgl_brosur_upload; 
             $brosur->deskripsi = $request->deskripsi; 
-            $brosur->lampiran = $request->lampiran; 
+            if($request->file('lampiran') == "" || $request->file('lampiran') == null)
+            {
+                $brosur->lampiran = $brosur->lampiran;
+            } 
+             else
+            {
+                $this->validate($request, [
+                    'lampiran' => 'required|mimes:jpeg,bmp,png,gif,svg,pdf|max:10000',
+                ]);
+
+                $files      = $request->file('lampiran');
+                $fileNames   = 'brosur'.time().'.'.$files->getClientOriginalExtension();
+                $destinationPath = public_path('/brosur');
+                $files->move($destinationPath, $fileNames);
+                $brosur->lampiran = $fileNames;
+            }
             $brosur->modified_by = session()->get('session_id');  
 
         $brosur->save();

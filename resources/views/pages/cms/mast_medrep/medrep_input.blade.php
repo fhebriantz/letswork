@@ -63,6 +63,14 @@
                                                     <input name="nama_medrep" autocomplete="off" required type="text" placeholder="Masukan Nama Medrep" name" class="form-control" id="nama_medrep">
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="alamat">Alamat<span class="text-danger">*</span></label>
+                                                    <input name="alamat" autocomplete="off" required  value=""  type="text" placeholder="Masukan Alamat" name" class="form-control" id="alamat">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="telp">Telepon<span class="text-danger">*</span></label>
+                                                    <input name="telp" autocomplete="off" required  value=""  type="text" placeholder="Masukan Alamat" name" class="form-control" id="telp">
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="tempat_lahir">Tempat Lahir<span class="text-danger">*</span></label>
                                                     <input name="tempat_lahir" autocomplete="off" required  type="text" placeholder="Masukan Merk" name" class="form-control" id="tempat_lahir">
                                                 </div>

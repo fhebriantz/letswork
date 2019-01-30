@@ -62,7 +62,7 @@
                                                 <td>{{$no++}}</td>
                                                 <td>{{$brosur->tgl_brosur_upload}}</td>
                                                 <td>{{$brosur->deskripsi}}</td>
-                                                <td>{{$brosur->lampiran}}</td>
+                                                <td><a target="_blank" href="{{url('/public/brosur/'.$brosur->lampiran)}}">{{ $brosur->lampiran }}</a></td>
                                                 <td>
                                                     <a class="btn btn-action marginright btn-pencil-list" href="{{url('brosur/'.$brosur->id.'/edit')}}"><img class="pencil-list" src="{{ asset('images/icon/pencil.png')}}" alt="" ></a>
                                                     <form method="POST" style="display: inline-block;" action="{{url('/brosur/'.$brosur->id.'/delete')}}">

@@ -85,6 +85,10 @@
                                                     <input name="pengajuan_omset" autocomplete="off" type="number" value="" placeholder="Masukan Omset" data-parsley-type="number" class="form-control">
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>Omset yang Diajukan</label>
+                                                    <textarea name="omset_yang_diajukan"  class="form-control" name="" id="" cols="30" rows="5"></textarea>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>Diskon (%)</label>
                                                     <input  type="number" autocomplete="off"  name="diskon" min="0" max="100" value="" placeholder="Masukan Diskon" class="form-control">
                                                 </div>

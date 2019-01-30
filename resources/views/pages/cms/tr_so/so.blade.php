@@ -42,12 +42,16 @@
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
                                     <p style="padding-top: 10px; color: #00b987"><strong>{{session()->get('message')}}</strong></p>
+                                    <a href="{{url('order/input')}}"  class="btn btn-info m-b-20">Tambah</a>
 
                                     <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
                                                 <th>ID Trans</th>
+                                                <th>Dokter</th>
+                                                <th>Medrep</th>
+                                                <th>Tanggal</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -59,6 +63,9 @@
                                             <tr>
                                                 <td>{{$no++}}</td>
                                                 <td><a href="{{url('so/'.$order->id.'/edit')}}">{{$order->id_trans_order}}</a></td>
+                                                <td>{{$order->nama_dokter}}</td>
+                                                <td>{{$order->nama_medrep}}</td>
+                                                <td>{{$order->tgl_trans_order}}</td>
                                                 <td>
                                                     <a class="btn btn-action marginright btn-pencil-list" href="{{url('so/'.$order->id.'/edit')}}"><img class="pencil-list" src="{{ asset('images/icon/pencil.png')}}" alt="" ></a>
                                                     <form method="POST" style="display: inline-block;" action="{{url('/order/'.$order->id.'/delete')}}">

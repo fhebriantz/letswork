@@ -74,6 +74,11 @@
                                                     <label for="nama_produk">Nama Produk<span class="text-danger">*</span></label>
                                                     <input name="nama_produk" autocomplete="off" required  value="{{$makloon->nama_produk}}"  type="text" placeholder="Masukan Nama Produk" name" class="form-control" id="nama_produk">
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label>Riwayat Pengambilan</label>
+                                                    <textarea name="riwayat_pengambilan"  class="form-control" name="" id="" cols="30" rows="5">{{$makloon->riwayat_pengambilan}}</textarea>
+                                                </div>
                                                  <div class="form-group">
                                                     <label for="stok">Stok<span class="text-danger">*</span></label>
                                                     <input name="stok" max="99999" autocomplete="off" required  value="{{$makloon->stok}}"  type="number" placeholder="Masukan Stok" name" class="form-control" id="stok">

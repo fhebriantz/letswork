@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Master;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use vendor\autoload;
+use Illuminate\Support\Facades\Input;
 use App\Http\Model\Mast_Kunjungan;
 use Illuminate\Support\Facades\Redirect;
 use Date;
@@ -56,7 +57,22 @@ class Mast_KunjunganController extends Controller
             $kunjungan->komplain = $request->komplain; 
             $kunjungan->order = $request->order; 
             $kunjungan->aktifitas_kompetitor = $request->aktifitas_kompetitor; 
-            $kunjungan->photo_upload = $request->photo_upload; 
+            if($request->file('photo_upload') == "" || $request->file('photo_upload') == null)
+            {
+                $kunjungan->photo_upload = $kunjungan->photo_upload;
+            } 
+             else
+            {
+                $this->validate($request, [
+                    'photo_upload' => 'required|mimes:jpeg,jpg,png,gif,svg|max:10000',
+                ]);
+
+                $files      = $request->file('photo_upload');
+                $fileNames   = 'kunjungan'.time().'.'.$files->getClientOriginalExtension();
+                $destinationPath = public_path('/kunjungan');
+                $files->move($destinationPath, $fileNames);
+                $kunjungan->photo_upload = $fileNames;
+            }
             $kunjungan->created_by = session()->get('session_id');  
 
         $kunjungan->save();
@@ -86,7 +102,22 @@ class Mast_KunjunganController extends Controller
             $kunjungan->komplain = $request->komplain; 
             $kunjungan->order = $request->order; 
             $kunjungan->aktifitas_kompetitor = $request->aktifitas_kompetitor; 
-            $kunjungan->photo_upload = $request->photo_upload; 
+            if($request->file('photo_upload') == "" || $request->file('photo_upload') == null)
+            {
+                $kunjungan->photo_upload = $kunjungan->photo_upload;
+            } 
+             else
+            {
+                $this->validate($request, [
+                    'photo_upload' => 'required|mimes:jpeg,jpg,png,gif,svg|max:10000',
+                ]);
+
+                $files      = $request->file('photo_upload');
+                $fileNames   = 'kunjungan'.time().'.'.$files->getClientOriginalExtension();
+                $destinationPath = public_path('/kunjungan');
+                $files->move($destinationPath, $fileNames);
+                $kunjungan->photo_upload = $fileNames;
+            } 
             $kunjungan->modified_by = session()->get('session_id');  
 
         $kunjungan->save();

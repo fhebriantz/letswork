@@ -70,19 +70,26 @@
                                 </ul>
                             </li>
 
+
+                            <li class="has_sub">
+                                <a href="{{ url('/transaksi')}}" class="waves-effect"><i class="zmdi zmdi-format-list-bulleted"></i> <span> List Transaction </span></a>
+                                
+                            </li>
+
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-assignment"></i><span>Transacion</span> <span class="menu-arrow"></span></a>
                                 <ul>
+
                                     <li class="has_sub">
-                                        <a href="{{ url('/order')}}" class="waves-effect"><span>Transaksi Order</span></a>
+                                        <a href="{{ url('/so')}}" class="waves-effect"><span>Transaksi Order</span></a>
                                     </li>
 
                                     <li class="has_sub">
-                                        <a href="{{ url('/so')}}" class="waves-effect"><span>Ubah SO</span></a>
-                                    </li>
-
-                                    <li class="has_sub">
-                                        <a href="{{ url('/tagihan')}}" class="waves-effect"><span>Transaksi Tagihan</span></a>
+                                        <a  href="javascript:void(0);"  class="waves-effect"></i><span>Transaksi Tagihan</span><span class="menu-arrow"></a>
+                                        <ul>
+                                            <li class="has_sub"><a href="{{ url('/tagihan')}}" class="waves-effect"><span>Tagihan</span></a></li>
+                                            <li class="has_sub"><a href="{{ url('/pembayaran')}}" class="waves-effect"><span>Pembayaran</span></a></li>
+                                        </ul>
                                     </li>
 
                                     <li class="has_sub">
@@ -91,10 +98,6 @@
                                 </ul>
                             </li>
 
-                            <li class="has_sub">
-                                <a href="{{ url('/transaksi')}}" class="waves-effect"><i class="zmdi zmdi-format-list-bulleted"></i> <span> List Transaction </span></a>
-                                
-                            </li>
 
                         </ul>
                         <div class="clearfix"></div>

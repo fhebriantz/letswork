@@ -48,6 +48,10 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>ID Trans</th>
+                                                <th>Dokter</th>
+                                                <th>Medrep</th>
+                                                <th>Tanggal</th>
+                                                <th>Pembayaran</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -58,7 +62,17 @@
                                             @foreach($order as $order)
                                             <tr>
                                                 <td>{{$no++}}</td>
-                                                <td><a href="{{url('penerimaan/'.$order->id.'/edit')}}">{{$order->id_trans_order}}</a></td>
+                                                <td><a href="{{url('pembayaran/'.$order->id.'/edit')}}">{{$order->id_trans_order}}</a></td>
+                                                <td>{{$order->nama_dokter}}</td>
+                                                <td>{{$order->nama_medrep}}</td>
+                                                <td>{{$order->tgl_trans_order}}</td>
+                                                <td>@if($order->is_lunas == 1)
+                                                            <strong  style="color: green;">Lunas</strong>
+                                                            @elseif($order->is_lunas == 0)
+                                                            <strong style="color: red;">Belum Lunas</strong>
+                                                            @endif
+                                                </td>
+                                                <td></td>
                                                 <td>
                                                     <a class="btn btn-action marginright btn-pencil-list" href="{{url('penerimaan/'.$order->id.'/edit')}}"><img class="pencil-list" src="{{ asset('images/icon/pencil.png')}}" alt="" ></a>
                                                     <form method="POST" style="display: inline-block;" action="{{url('/order/'.$order->id.'/delete')}}">

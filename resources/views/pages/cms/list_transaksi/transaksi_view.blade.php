@@ -152,10 +152,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label for="id_so">ID SO</label>
-                                                    <input name="id_so"  autocomplete="off" required readonly=""  value="{{$order->id_so}}"  type="number" name" class="form-control" id="id_so">
-                                                </div>
 
                                                 <div class="form-group">
                                                     <label for="no_so">No SO</label>

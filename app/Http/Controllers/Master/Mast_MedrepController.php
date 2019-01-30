@@ -42,6 +42,8 @@ class Mast_MedrepController extends Controller
                 'nama_medrep' => 'required',
                 'tempat_lahir' => 'required',
                 'tgl_lahir' => 'required',
+                'alamat' => 'required',
+                'telp' => 'required',
             ]);
 
         $medrep = new Mast_Medrep;
@@ -49,6 +51,8 @@ class Mast_MedrepController extends Controller
             $medrep->nama_medrep = $request->nama_medrep; 
             $medrep->tempat_lahir = $request->tempat_lahir; 
             $medrep->tgl_lahir = $request->tgl_lahir; 
+            $medrep->alamat = $request->alamat; 
+            $medrep->telp = $request->telp; 
             $medrep->created_by = session()->get('session_id');  
 
         $medrep->save();
@@ -63,6 +67,8 @@ class Mast_MedrepController extends Controller
                 'nama_medrep' => 'required',
                 'tempat_lahir' => 'required',
                 'tgl_lahir' => 'required',
+                'alamat' => 'required',
+                'telp' => 'required',
 
             ]);
 
@@ -71,6 +77,8 @@ class Mast_MedrepController extends Controller
             $medrep->nama_medrep = $request->nama_medrep; 
             $medrep->tempat_lahir = $request->tempat_lahir; 
             $medrep->tgl_lahir = $request->tgl_lahir; 
+            $medrep->alamat = $request->alamat; 
+            $medrep->telp = $request->telp; 
             $medrep->modified_by = session()->get('session_id');  
 
         $medrep->save();

@@ -42,7 +42,8 @@ class Mast_SponsorController extends Controller
                 'tgl_pengajuan' => 'required',
                 'nama_dokter' => 'required',
                 'periode_pengajuan' => 'required',
-                'pengajuan_omset' => 'required'
+                'pengajuan_omset' => 'required',
+                'omset_yang_diajukan' => 'required',
             ]);
 
         $sponsor = new Mast_Sponsor;
@@ -51,6 +52,7 @@ class Mast_SponsorController extends Controller
             $sponsor->nama_dokter = $request->nama_dokter; 
             $sponsor->periode_pengajuan = $request->periode_pengajuan; 
             $sponsor->pengajuan_omset = $request->pengajuan_omset; 
+            $sponsor->omset_yang_diajukan = $request->omset_yang_diajukan; 
             $sponsor->diskon = $request->diskon; 
             $sponsor->created_by = session()->get('session_id');  
 
@@ -66,7 +68,8 @@ class Mast_SponsorController extends Controller
                 'tgl_pengajuan' => 'required',
                 'nama_dokter' => 'required',
                 'periode_pengajuan' => 'required',
-                'pengajuan_omset' => 'required'
+                'pengajuan_omset' => 'required',
+                'omset_yang_diajukan' => 'required',
 
             ]);
 
@@ -75,6 +78,7 @@ class Mast_SponsorController extends Controller
             $sponsor->tgl_pengajuan = $request->tgl_pengajuan; 
             $sponsor->nama_dokter = $request->nama_dokter; 
             $sponsor->periode_pengajuan = $request->periode_pengajuan; 
+            $sponsor->omset_yang_diajukan = $request->omset_yang_diajukan; 
             $sponsor->pengajuan_omset = $request->pengajuan_omset; 
             $sponsor->diskon = $request->diskon; 
             $sponsor->modified_by = session()->get('session_id');  

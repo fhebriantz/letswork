@@ -72,6 +72,12 @@ Route::get('/tagihan', 'Transaction\Trans_OrderController@show_tagihan');
 Route::get('/tagihan/{id}/edit', 'Transaction\Trans_OrderController@edit_tagihan');
 Route::put('/tagihan/{id}/edit','Transaction\Trans_OrderController@update_tagihan'); 
 
+
+// pembayaran
+Route::get('/pembayaran', 'Transaction\Trans_OrderController@show_pembayaran');
+Route::get('/pembayaran/{id}/edit', 'Transaction\Trans_OrderController@edit_pembayaran');
+Route::post('/pembayaran/{id}/input','Transaction\Trans_OrderController@insert_pembayaran'); 
+
 // Penerimaan 
 Route::get('/penerimaan', 'Transaction\Trans_OrderController@show_penerimaan');
 Route::get('/penerimaan/{id}/edit', 'Transaction\Trans_OrderController@edit_penerimaan');
